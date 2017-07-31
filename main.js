@@ -36,8 +36,7 @@ let formData = [
     "label": "Select Language",
     "id": "user-language",
     "icon": "",
-    "options": [
-      {
+    "options": [{
         "label": "English",
         "value": "EN"
       },
@@ -85,31 +84,48 @@ let formData = [
 // HINTS:
 // As you can see, we access the first element in the array
 // with [0] and then grab the property "label" using the "." operator
-( function(){
+(function() {
   // Select the first element from the array
-  let first = formData[ 0 ];
+  let first = formData[0];
   // Log the first object
-  console.log( first );
+  console.log(first);
   // Log the string "First Name"
-  console.log( first.label );
-} )();
+  console.log(first.label);
+})();
 
 // -------- Your Code Goes Below this Line --------
 
 let formHTML = document.getElementById('fields');
 
-for (let i = 0;i < formData.length; i++ ){
+for (let i = 0; i < formData.length; i++)
   let timput = document.createElement('input');
   formHTML.appendChild(timput)
-  timput.setAttribute('type', formData[i].type);
-  timput.setAttribute('label', formData[i].label);
-  timput.setAttribute('id', formData[i].id);
-  timput.setAttribute('placeholder', formData[i].label)
-  timput.setAttribute('icon', formData[i].icon)
-  if (formData[i].type === 'select'){
-    timput.setAttribute('options', formData[i].options)
-  }
 
+
+  if (formData[i].type === 'select') {
+    let selector = document.createElement('select');
+    let optionInfo = formData[i].options;
+
+
+    for (let i = 0; i < optionInfo.length; i++) {
+      let opt = document.createElement('option')
+
+
+      opt.setAttribute('value', optionInfo[i].value);
+      opt.setAttribute('label', optionInfo[i].label);
+      selector.appendChild(opt)
+
+
+      console.log(optionInfo);
+    }
+    timput.appendChild(selector);
+
+  }else {
+    timput.setAttribute('type', formData[i].type);
+    timput.setAttribute('label', formData[i].label);
+    timput.setAttribute('id', formData[i].id);
+    timput.setAttribute('placeholder', formData[i].label)
+  }
 
 }
 
