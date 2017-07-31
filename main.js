@@ -97,34 +97,47 @@ let formData = [
 
 let formHTML = document.getElementById('fields');
 
-for (let i = 0; i < formData.length; i++)
+for (let i = 0; i < formData.length; i++){
   let timput = document.createElement('input');
-  formHTML.appendChild(timput)
+
+
 
 
   if (formData[i].type === 'select') {
     let selector = document.createElement('select');
     let optionInfo = formData[i].options;
+    formHTML.appendChild(selector);
+    selector.setAttribute('type', formData[i].type);
+    selector.setAttribute('label', formData[i].label);
+    selector.setAttribute('id', formData[i].id);
+    selector.setAttribute('placeholder', formData[i].label);
 
 
     for (let i = 0; i < optionInfo.length; i++) {
-      let opt = document.createElement('option')
+      let opt = document.createElement('option');
 
 
       opt.setAttribute('value', optionInfo[i].value);
       opt.setAttribute('label', optionInfo[i].label);
-      selector.appendChild(opt)
+      selector.appendChild(opt);
 
 
       console.log(optionInfo);
     }
-    timput.appendChild(selector);
 
+
+  }else if (formData[i].type === 'textarea'){
+    let textplace = document.createElement('textarea');
+    textplace.setAttribute('type', formData[i].type);
+    textplace.setAttribute('label', formData[i].label);
+    textplace.setAttribute('id', formData[i].id);
+    formHTML.appendChild(textplace);
   }else {
     timput.setAttribute('type', formData[i].type);
     timput.setAttribute('label', formData[i].label);
     timput.setAttribute('id', formData[i].id);
-    timput.setAttribute('placeholder', formData[i].label)
+    timput.setAttribute('placeholder', formData[i].label);
+    formHTML.appendChild(timput);
   }
 
 }
