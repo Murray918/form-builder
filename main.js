@@ -97,6 +97,7 @@ let formData = [
 
 let formHTML = document.getElementById('fields');
 
+
 for (let i = 0; i < formData.length; i++){
   let timput = document.createElement('input');
 
@@ -105,13 +106,14 @@ for (let i = 0; i < formData.length; i++){
 
   if (formData[i].type === 'select') {
     let selector = document.createElement('select');
+    selector.innerHTML = '<option value="" disabled selected hidden>Select language...</option>';
+
     let optionInfo = formData[i].options;
     formHTML.appendChild(selector);
     selector.setAttribute('type', formData[i].type);
     selector.setAttribute('label', formData[i].label);
     selector.setAttribute('id', formData[i].id);
     selector.setAttribute('placeholder', formData[i].label);
-
 
     for (let i = 0; i < optionInfo.length; i++) {
       let opt = document.createElement('option');
@@ -131,6 +133,7 @@ for (let i = 0; i < formData.length; i++){
     textplace.setAttribute('type', formData[i].type);
     textplace.setAttribute('label', formData[i].label);
     textplace.setAttribute('id', formData[i].id);
+    textplace.setAttribute('placeholder', formData[i].label)
     formHTML.appendChild(textplace);
   }else {
     timput.setAttribute('type', formData[i].type);
